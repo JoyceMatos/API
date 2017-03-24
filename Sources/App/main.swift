@@ -1,11 +1,13 @@
 import Vapor
 import VaporPostgreSQL
 
-let drop = Droplet(
-    preparations: [Person.self],
-    providers: [VaporPostgreSQL.Provider.self]
-)
-
+//let drop = Droplet(
+//    preparations: [Person.self],
+//    providers: [VaporPostgreSQL.Provider.self]
+//)
+let drop = Droplet()
+try drop.addProvider(VaporPostgreSQL.Provider)
+drop.preparations += Person.self
 
 let basic = BasicController()
 basic.addRoutes(drop: drop)
